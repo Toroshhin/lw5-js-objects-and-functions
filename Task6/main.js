@@ -1,29 +1,58 @@
+var tracks = ['song1.mp3', 'song2.mp3', 'song3.mp3', 'song4.mp3'];
 var Player = {
-  track: ['song.mp3', 'song2.mp3', 'song3.mp3'],
+  currentTrack: 0,
   status: 'pause',
-  selectedTrack: 0,
+  volume: 20,
   display: function() {
-    if (this.track.length > 0) {
-      return 'Track: ' + this.track[this.selectedTrack] + ' Status: ' + this.status;
+    if (tracks.length !== 0) {
+      return 'Track: ' + tracks[this.currentTrack] + ' Status: ' + this.status;
     } else {
-      selectedTrack: 0
-      return 'No tracks found';
+      return 'Status: stop'
     }
   },
+
   play: function() {
-    this.status = 'play';
+      this.status = 'play';
   },
+
   pause: function() {
-    this.status = 'pause';
+      this.status = 'pause';
   },
+
   next: function() {
-    if (this.track.length > 0) {
-      this.selectedTrack = (this.selectedTrack + 1) % this.track.length;
+    if (this.currentTrack < tracks.length - 1) {
+      this.currentTrack++;
+    } else {
+      this.currentTrack = 0;
     }
   },
+
   prev: function() {
-    if (this.track.length > 0) {
-      this.selectedTrack = (this.selectedTrack - 1 + this.track.length) % this.track.length;
+    if (this.currentTrack !== 0) {
+      this.currentTrack--;
+    } else {
+      this.currentTrack = tracks.length - 1;
+    }
+  },
+
+  randomize: function(){
+      tracks.sort(() => Math.random() - 0.3);
+  }, 
+
+  volumeUp: function() {
+    if (this.volume > 86) {
+      this.volume = 100;
+    } else {
+      this.volume = this.volume + 15;
+    }
+  },
+
+  volumeDown: function() {
+    if (this.volume < 14) {
+      this.volume = 0;
+    } else {
+      this.volume = this.volume - 15;
     }
   }
-};
+
+}
