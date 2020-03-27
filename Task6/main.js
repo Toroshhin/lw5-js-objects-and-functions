@@ -5,18 +5,18 @@ var Player = {
   volume: 20,
   display: function() {
     if (tracks.length !== 0) {
-      return 'Track: ' + tracks[this.currentTrack] + ' Status: ' + this.status;
+      return 'Track: ' + tracks[this.currentTrack] + ' Status: ' + this.status + ' Volume: ' + this.volume;
     } else {
       return 'Status: stop'
     }
   },
 
   play: function() {
-      this.status = 'play';
+    this.status = 'play';
   },
 
   pause: function() {
-      this.status = 'pause';
+    this.status = 'pause';
   },
 
   next: function() {
@@ -35,9 +35,9 @@ var Player = {
     }
   },
 
-  randomize: function(){
-      tracks.sort(() => Math.random() - 0.3);
-  }, 
+  randomize: function() {
+    tracks.sort(() => Math.random() - 0.5);
+  },
 
   volumeUp: function() {
     if (this.volume > 86) {

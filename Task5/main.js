@@ -1,24 +1,18 @@
 function check(data, expectedType) {
-  let result = false;
-
   if (expectedType === 'array' && Array.isArray(data)) {
-    result = true;
+    return true;
   }
-
   if (expectedType === 'number' && typeof data === 'number') {
-    result = true;
+    return true;
   }
   if (expectedType === 'string' && typeof data === 'string') {
-    result = true;
+    return true;
   }
-
-  if (expectedType === 'object' && typeof data === 'object') {
-    result = true;
+  if (expectedType === 'object' && typeof data === 'object' && !Array.isArray(data)) {
+    return true;
   }
-
-  if (expectedType === 'null' && typeof data === 'null') {
-    result = true;
+  if (expectedType === 'null' && typeof data === 'object') {
+    return true;
   }
-
-  return result;
+  return false;
 }
